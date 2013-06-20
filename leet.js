@@ -74,6 +74,8 @@
 
                 if (app.get(c)) {
                     a.push(app.get(c));
+                } else {
+                    a.push(c);    
                 }
             }
 
