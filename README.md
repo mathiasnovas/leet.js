@@ -17,7 +17,7 @@ If you don't have npm install you download and install it with this line:
 ###Usage
 Using node.js is even simpler! Running it from your command line...
 
-    leet "i want to be leet"
+    ./leet.js "i want to be leet"
 
 ... will output:
 
