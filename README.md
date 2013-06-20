@@ -27,7 +27,7 @@ That's it! [Dance!](http://www.youtube.com/watch?v=8grzRgQ_AWY)
 
     I W4N7 70 347 5N4X 4ND B3 1337ZORZ!
 
-**Note:** You should only input text in lower case.
+**Note:** Uppercase characters will "bypass" the conversion.
 
 ***
 ### License
