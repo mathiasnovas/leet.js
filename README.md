@@ -7,7 +7,9 @@ Convert regular and boring text into 1337 text with this lightweight node.js mod
 
 To install leet.js simply do:
 
-    npm install leet
+    sudo npm install leet
+
+Add -g to install globally.
 
 If you don't have npm install you download and install it with this line:
 
