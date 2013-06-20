@@ -1,0 +1,15 @@
+{
+  "name": "leet",
+  "version": "0.0.0",
+  "description": "Convert boring text to 1337 text",
+  "main": "leet.js",
+  "scripts": {
+    "test": "leet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/novasism/leet.js"
+  },
+  "author": "novasism",
+  "license": "BSD"
+}
