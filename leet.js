@@ -66,6 +66,12 @@
          * "Renders" the input
          */
         render: function (s) {
+            var x = /cks/g;
+
+            if (x.test(s)) {
+                s = s.replace(x, 'x');
+            }
+
             var b = s.split(''),
                 a = [];
 
@@ -83,7 +89,7 @@
         },
 
         /**
-         * Test if character
+         * Test character
          */
         test: function (c) {
             var v = /^[4I30U]$/i,
