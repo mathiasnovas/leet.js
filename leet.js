@@ -15,10 +15,10 @@
             if (s) {
                 var w = app.render(s);
 
-                if (w) {    
+                if (w) {
                     app.output(w);
                 } else {
-                    app.error();    
+                    app.error();
                 }
             } else {
                 app.error();
@@ -75,7 +75,7 @@
                 if (app.get(c)) {
                     a.push(app.get(c));
                 } else {
-                    a.push(c);    
+                    a.push(c);
                 }
             }
 
@@ -83,14 +83,17 @@
         },
 
         /**
-         * Test if character is a vowel
+         * Test if character
          */
         test: function (c) {
-            var v = ['4', 'I', '3', '0', 'U'],
+            var v = /^[4I30U]$/i,
+                s = /^[!?.,-]$/i,
                 b = false;
 
-            if (v.indexOf(c) >= 0) {
-                b = true;
+            if (v.test(c)) {
+                b = 'vowel';
+            } else if (s.test(c)) {
+                b = 'special';
             }
 
             return b;
@@ -101,12 +104,17 @@
          */
         output: function (s) {
             var l = s[s.length - 1],
-                v = app.test(l);
+                t = app.test(l),
+                f = s.join('');
 
-            if (v) {
-                console.log(s.join('') + 'ZORZ');
+            if (t) {
+                if (t == 'special') {
+                    console.log(f.substr(0, f.length - 1) + 'ZORZ' + l);
+                } else if (t == 'vowel') {
+                    console.log(f + 'XOR');
+                }
             } else {
-                console.log(s.join('') + 'ORZ');
+                console.log(f + 'ZORZ');
             }
         },
 
