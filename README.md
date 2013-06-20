@@ -2,6 +2,8 @@
 
 Convert regular and boring text into 1337 text with this lightweight node.js module.
 
+![Alt text](http://i.imgur.com/BTuE3Sp.gif)
+
 ***
 ###Install
 
