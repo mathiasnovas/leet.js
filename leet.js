@@ -1,4 +1,8 @@
+#!/usr/bin/env node
+
 (function () {
+
+    "use strict";
 
     var app = {
 
@@ -10,12 +14,12 @@
 
             if (s) {
                 var w = app.render(s);
-            } else {
-                app.error();
-            }
 
-            if (w) {
-                app.output(w);
+                if (w) {    
+                    app.output(w);
+                } else {
+                    app.error();    
+                }
             } else {
                 app.error();
             }
