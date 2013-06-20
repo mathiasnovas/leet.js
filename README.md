@@ -15,6 +15,8 @@ If you don't have npm, you can download and install it with this line:
 
     curl http://npmjs.org/install.sh | sh
 
+That's it! [Dance!](http://www.youtube.com/watch?v=8grzRgQ_AWY)
+
 ***
 ###Usage
 *Using* node.js is even simpler! Running it from your command line...
@@ -26,3 +28,7 @@ If you don't have npm, you can download and install it with this line:
     I W4N7 70 B3 1337ORZ
 
 **Note:** You should only input text in lower case.
+
+***
+### License
+I D0N7 C4R3ZORZ! Do whatever you want.
