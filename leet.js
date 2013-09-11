@@ -133,6 +133,21 @@
         }
     }
 
-    app.init();
+    if (/(^|\/)leet\.js$/.test(process.argv[1])) {
+	    app.init();
+    } else if (typeof exports !== 'undefined') {
+        // Export only a specific function for converting a string into 1337
+        exports.convert = function(string) {
+	        var letters = app.render(string);
+
+            if (letters) {
+                return app.output(letters);
+            } else {
+                app.error();
+            }
+        }
+    } else {
+        app.error();
+    }
 
 }) ();
