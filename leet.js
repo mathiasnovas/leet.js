@@ -16,7 +16,7 @@
                 var w = app.render(s);
 
                 if (w) {
-                    app.output(w);
+                    console.log(app.output(w));
                 } else {
                     app.error();
                 }
@@ -115,12 +115,12 @@
 
             if (t) {
                 if (t == 'special') {
-                    console.log(f.substr(0, f.length - 1) + 'ZORZ' + l);
+                    return f.substr(0, f.length - 1) + 'ZORZ' + l;
                 } else if (t == 'vowel') {
-                    console.log(f + 'XOR');
+                    return f + 'XOR';
                 }
             } else {
-                console.log(f + 'ZORZ');
+                return f + 'ZORZ';
             }
         },
 
@@ -133,6 +133,21 @@
         }
     }
 
-    app.init();
+    if (/(^|\/)leet\.js$/.test(process.argv[1])) {
+	    app.init();
+    } else if (typeof exports !== 'undefined') {
+        // Export only a specific function for converting a string into 1337
+        exports.convert = function(string) {
+	        var letters = app.render(string);
+
+            if (letters) {
+                return app.output(letters);
+            } else {
+                app.error();
+            }
+        }
+    } else {
+        app.error();
+    }
 
 }) ();
