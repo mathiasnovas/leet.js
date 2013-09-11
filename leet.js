@@ -16,7 +16,7 @@
                 var w = app.render(s);
 
                 if (w) {
-                    app.output(w);
+                    console.log(app.output(w));
                 } else {
                     app.error();
                 }
@@ -115,12 +115,12 @@
 
             if (t) {
                 if (t == 'special') {
-                    console.log(f.substr(0, f.length - 1) + 'ZORZ' + l);
+                    return f.substr(0, f.length - 1) + 'ZORZ' + l;
                 } else if (t == 'vowel') {
-                    console.log(f + 'XOR');
+                    return f + 'XOR';
                 }
             } else {
-                console.log(f + 'ZORZ');
+                return f + 'ZORZ';
             }
         },
 
