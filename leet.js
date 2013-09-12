@@ -34,11 +34,14 @@
          * @param string string Regular ol' text to convert
          * @return string
          */
-        convert: function(string) {
+        convert: function (string) {
+            var letter;
             string = string.replace(/cks/g, 'x');
 
-            for (var letter in leet.characterMap) {
-                string = string.replace(RegExp(letter, 'g'), leet.characterMap[letter]);
+            for (letter in leet.characterMap) {
+                if (leet.characterMap.hasOwnProperty(letter)) {
+                    string = string.replace(new RegExp(letter, 'g'), leet.characterMap[letter]);
+                }
             }
 
             return string.toUpperCase();
@@ -52,15 +55,16 @@
          */
         test: function (character) {
             var vowel = /^[4I30U]$/i,
-                special = /^[!?.,-]$/i;
+                special = /^[!?.,\-]$/i,
+                type = false;
 
             if (vowel.test(character)) {
-                return 'vowel';
+                type = 'vowel';
             } else if (special.test(character)) {
-                return 'special';
+                type = 'special';
             }
 
-            return false;
+            return type;
         },
 
         /**
@@ -73,28 +77,31 @@
             string = leet.convert(string);
 
             var last = string[string.length - 1],
-                type = leet.test(last);
+                type = leet.test(last),
+                result;
 
             if (type === 'special') {
-                return string.substr(0, string.length - 1) + 'ZORZ' + last;
-            } else if (type == 'vowel') {
-                return string + 'XOR';
+                result = string.substr(0, string.length - 1) + 'ZORZ' + last;
+            } else if (type === 'vowel') {
+                result = string + 'XOR';
             } else {
-                return string + 'ZORZ';
+                result = string + 'ZORZ';
             }
+
+            return result;
         }
     };
 
     if (/(^|\/)leet\.js$/.test(process.argv[1])) {
-        if (typeof process.argv[2] !== 'undefined') {
+        if (undefined !== process.argv[2]) {
             console.log(leet.output(process.argv[2]));
         } else {
             console.error('Usage: leet.js <string>');
         }
-    } else if (typeof exports !== 'undefined') {
+    } else if (undefined !== exports) {
         exports.convert = leet.output;
     } else {
         console.error('I don\'t know what to do');
     }
 
-}) ();
+}());
