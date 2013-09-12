@@ -36,6 +36,7 @@
          */
         convert: function (string) {
             var letter;
+            string = string || '';
             string = string.replace(/cks/g, 'x');
 
             for (letter in leet.characterMap) {
@@ -75,6 +76,9 @@
          */
         output: function (string) {
             string = leet.convert(string);
+            if ('' === string) {
+                return string;
+            }
 
             var last = string[string.length - 1],
                 type = leet.test(last),
