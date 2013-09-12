@@ -18,10 +18,10 @@
                 if (w) {
                     console.log(app.output(w));
                 } else {
-                    app.error();
+                    console.error('Failed to convert string to leet: ' + s);
                 }
             } else {
-                app.error();
+                console.error('Usage: leet.js <string>');
             }
         },
 
@@ -122,14 +122,6 @@
             } else {
                 return f + 'ZORZ';
             }
-        },
-
-        /**
-         * Outputs an error and returns false
-         */
-        error: function () {
-            console.log('Looks like something went wrong!');
-            return false;
         }
     }
 
@@ -143,11 +135,11 @@
             if (letters) {
                 return app.output(letters);
             } else {
-                app.error();
+                console.error('Failed to convert string to leet :' + string);
             }
         }
     } else {
-        app.error();
+        console.error('I don\'t know what to do');
     }
 
 }) ();
