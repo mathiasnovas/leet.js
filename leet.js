@@ -4,150 +4,108 @@
 
     "use strict";
 
-    var app = {
+    /**
+     * Convert regular and boring text into 1337 text.
+     *
+     * @author Mathias Novas <novasism@gmail.com>, Michael Enger <mike@thelonelycoder.com>
+     * @license IDGAF
+     */
+    var leet = {
 
         /**
-         * Initialize the app
+         * Map of conversions.
+         *
+         * @var object
          */
-        init: function () {
-            var s = process.argv[2];
+        characterMap: {
+            'a': '4',
+            'b': '8',
+            'e': '3',
+            'g': '6',
+            'l': '1',
+            'o': '0',
+            's': '5',
+            't': '7'
+        },
 
-            if (s) {
-                var w = app.render(s);
+        /**
+         * Convert a string to 1337 based on the character map.
+         *
+         * @param string string Regular ol' text to convert
+         * @return string
+         */
+        convert: function (string) {
+            var letter;
+            string = string || '';
+            string = string.replace(/cks/g, 'x');
 
-                if (w) {
-                    console.log(app.output(w));
-                } else {
-                    app.error();
+            for (letter in leet.characterMap) {
+                if (leet.characterMap.hasOwnProperty(letter)) {
+                    string = string.replace(new RegExp(letter, 'g'), leet.characterMap[letter]);
                 }
+            }
+
+            return string.toUpperCase();
+        },
+
+        /**
+         * Test character to see if it's a vovel or special (or neither).
+         *
+         * @param string character Character to test
+         * @return mixed
+         */
+        test: function (character) {
+            var vowel = /^[4I30U]$/i,
+                special = /^[!?.,\-]$/i,
+                type = false;
+
+            if (vowel.test(character)) {
+                type = 'vowel';
+            } else if (special.test(character)) {
+                type = 'special';
+            }
+
+            return type;
+        },
+
+        /**
+         * Converts the string to 1337 along with special rules.
+         *
+         * @param string string Regular ol' text to convert
+         * @return string
+         */
+        output: function (string) {
+            string = leet.convert(string);
+            if ('' === string) {
+                return string;
+            }
+
+            var last = string[string.length - 1],
+                type = leet.test(last),
+                result;
+
+            if (type === 'special') {
+                result = string.substr(0, string.length - 1) + 'ZORZ' + last;
+            } else if (type === 'vowel') {
+                result = string + 'XOR';
             } else {
-                app.error();
-            }
-        },
-
-        /**
-         * Returns a 1337 character
-         */
-        get: function (c) {
-            var a = {
-                'a': '4',
-                'b': '8',
-                'c': 'C',
-                'd': 'D',
-                'e': '3',
-                'f': 'F',
-                'g': '6',
-                'h': 'H',
-                'i': 'I',
-                'j': 'J',
-                'k': 'K',
-                'l': '1',
-                'm': 'M',
-                'n': 'N',
-                'o': '0',
-                'p': 'P',
-                'q': 'Q',
-                'r': 'R',
-                's': '5',
-                't': '7',
-                'u': 'U',
-                'v': 'V',
-                'w': 'W',
-                'x': 'X',
-                'y': 'Y',
-                'z': 'Z',
-                ' ': ' '
+                result = string + 'ZORZ';
             }
 
-            return a[c];
-        },
-
-        /**
-         * "Renders" the input
-         */
-        render: function (s) {
-            var x = /cks/g;
-
-            if (x.test(s)) {
-                s = s.replace(x, 'x');
-            }
-
-            var b = s.split(''),
-                a = [];
-
-            for(var i = 0; i < s.length; i++) {
-                var c = b[i];
-
-                if (app.get(c)) {
-                    a.push(app.get(c));
-                } else {
-                    a.push(c);
-                }
-            }
-
-            return a;
-        },
-
-        /**
-         * Test character
-         */
-        test: function (c) {
-            var v = /^[4I30U]$/i,
-                s = /^[!?.,-]$/i,
-                b = false;
-
-            if (v.test(c)) {
-                b = 'vowel';
-            } else if (s.test(c)) {
-                b = 'special';
-            }
-
-            return b;
-        },
-
-        /**
-         * Outputs the result
-         */
-        output: function (s) {
-            var l = s[s.length - 1],
-                t = app.test(l),
-                f = s.join('');
-
-            if (t) {
-                if (t == 'special') {
-                    return f.substr(0, f.length - 1) + 'ZORZ' + l;
-                } else if (t == 'vowel') {
-                    return f + 'XOR';
-                }
-            } else {
-                return f + 'ZORZ';
-            }
-        },
-
-        /**
-         * Outputs an error and returns false
-         */
-        error: function () {
-            console.log('Looks like something went wrong!');
-            return false;
+            return result;
         }
-    }
+    };
 
     if (/(^|\/)leet\.js$/.test(process.argv[1])) {
-	    app.init();
-    } else if (typeof exports !== 'undefined') {
-        // Export only a specific function for converting a string into 1337
-        exports.convert = function(string) {
-	        var letters = app.render(string);
-
-            if (letters) {
-                return app.output(letters);
-            } else {
-                app.error();
-            }
+        if (undefined !== process.argv[2]) {
+            console.log(leet.output(process.argv[2]));
+        } else {
+            console.error('Usage: leet.js <string>');
         }
+    } else if (undefined !== exports) {
+        exports.convert = leet.output;
     } else {
-        app.error();
+        console.error('I don\'t know what to do');
     }
 
-}) ();
+}());
