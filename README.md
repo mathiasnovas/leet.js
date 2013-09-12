@@ -4,6 +4,12 @@ Convert regular and boring text into 1337 text with this lightweight node.js mod
 
 ![Example](http://i.imgur.com/BTuE3Sp.gif)
 
+It converts the usual suspects into 4W350M3 1337 73X7ZORZ, but with the following caveats:
+
+* Uppercase characters will "bypass" the conversion (`HELLO hello` becomes `HELLO H3110`)
+* Any `cks` are replaced by `x` for 100% true 1337N355
+* It will add `ZORZ` or `XOR` to the end of the end of the text
+
 ***
 
 ## Installation
@@ -33,8 +39,6 @@ You can also do it the old-fashioned way:
 ## Usage
 
 Using `leet.js` couldn't be easier! Feed it text and it will spit out 1337 73X7ZORZ!
-
-**Note:** Uppercase characters will "bypass" the conversion.
 
 ### As a standalone script
 
