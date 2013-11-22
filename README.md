@@ -20,7 +20,7 @@ To install leet.js simply do:
 
     sudo npm install leet
 
-Add -g to install globally.
+Add '-g' to install globally.
 
 If you don't have npm, you can download and install it with this line:
 
