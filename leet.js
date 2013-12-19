@@ -96,7 +96,7 @@
         }
     };
 
-    if (/(^|\/)leet\.js$/.test(process.argv[1])) {
+    if (/(^|\/)leet(\.js)?$/.test(process.argv[1])) {
         if (undefined !== process.argv[2]) {
             console.log(leet.output(process.argv[2]));
         } else {
