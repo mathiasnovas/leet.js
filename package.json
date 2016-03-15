@@ -1,6 +1,6 @@
 {
   "name": "leet",
-  "version": "1.2.7",
+  "version": "1.3.0",
   "description": "Convert boring text to 1337 text",
   "main": "leet.js",
   "prefer_global": true,
